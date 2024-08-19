@@ -21,6 +21,10 @@ function App() {
     });
   };
 
+  const resetFeedback = () => {
+    setFeedback(feedbacks);
+  };
+
   return (
     <>
       <div className={css.container}>
@@ -29,6 +33,7 @@ function App() {
           onUpdateFeedback={updateFeedback}
           feedbackTypes={["good", "neutral", "bad"]}
           total={totalFeedback}
+          onResetFeedback={resetFeedback}
         />
         {totalFeedback > 0 ? (
           <Feedback
