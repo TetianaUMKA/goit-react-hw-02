@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Description from "../Description/Description";
 import Options from "../Options/Options";
@@ -9,7 +9,15 @@ import css from "./App.module.css";
 
 function App() {
   const feedbacks = { good: 0, neutral: 0, bad: 0 };
-  const [feedback, setFeedback] = useState(feedbacks);
+  const savedFeedback = window.localStorage.getItem("saved-feedback");
+
+  const [feedback, setFeedback] = useState(
+    savedFeedback === null ? feedbacks : JSON.parse(savedFeedback)
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-feedback", JSON.stringify(feedback));
+  }, [feedback]);
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
