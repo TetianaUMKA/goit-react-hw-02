@@ -1,3 +1,5 @@
+import css from "./Options.module.css";
+
 export default function Options({
   feedbackTypes: [good, neutral, bad],
   onUpdateFeedback,
@@ -5,7 +7,7 @@ export default function Options({
   onResetFeedback,
 }) {
   return (
-    <div>
+    <div className={css.container}>
       <button onClick={() => onUpdateFeedback(good)}>Good 🙂</button>
       <button onClick={() => onUpdateFeedback(neutral)}>Neutral 😐</button>
       <button onClick={() => onUpdateFeedback(bad)}>Bad 🙃</button>
