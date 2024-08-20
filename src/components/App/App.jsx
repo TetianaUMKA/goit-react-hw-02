@@ -7,10 +7,10 @@ import Notification from "../Notification/Notification";
 
 import css from "./App.module.css";
 
-function App() {
-  const feedbacks = { good: 0, neutral: 0, bad: 0 };
-  const savedFeedback = window.localStorage.getItem("saved-feedback");
+const feedbacks = { good: 0, neutral: 0, bad: 0 };
+const savedFeedback = window.localStorage.getItem("saved-feedback");
 
+function App() {
   const [feedback, setFeedback] = useState(
     savedFeedback === null ? feedbacks : JSON.parse(savedFeedback)
   );
@@ -30,7 +30,7 @@ function App() {
   };
 
   const resetFeedback = () => {
-    setFeedback(feedbacks);
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
   };
 
   return (
@@ -39,7 +39,7 @@ function App() {
         <Description />
         <Options
           onUpdateFeedback={updateFeedback}
-          feedbackTypes={["good", "neutral", "bad"]}
+          feedbackTypes={{ good: "good", neutral: "neutral", bad: "bad" }}
           total={totalFeedback}
           onResetFeedback={resetFeedback}
         />
