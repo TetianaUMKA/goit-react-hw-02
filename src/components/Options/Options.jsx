@@ -1,7 +1,7 @@
 import css from "./Options.module.css";
 
 export default function Options({
-  feedbackTypes: [good, neutral, bad],
+  feedbackTypes: { good, neutral, bad },
   onUpdateFeedback,
   total,
   onResetFeedback,
